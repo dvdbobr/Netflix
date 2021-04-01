@@ -1,6 +1,6 @@
 import Main from "./Components/Main";
-
-
+import './CSS/movieRow.css'
+import './CSS/general.css'
 function App() {
   return (
     <div >

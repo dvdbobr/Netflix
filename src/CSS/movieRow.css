@@ -1,0 +1,17 @@
+.moviePoster {
+    width: 295px;
+    height: 165px;
+    margin-right: 10px;
+}
+
+.bigMoviePoster {
+    width: 293px;
+    height: 550px;
+    margin-right: 3px;
+}
+
+.moviePosterRow {
+    padding: 10px;
+    display: flex;
+    overflow-x:scroll ;
+}
