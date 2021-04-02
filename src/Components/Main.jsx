@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Billboard from './Billboard'
+import Navbar from './Navbar'
 //import MovieRow from './MovieRow'
 import Row from './Row'
 
@@ -9,11 +11,13 @@ export default function Main() {
     const imgEndpoint = 'http://image.tmdb.org/t/p/original'
     const [originals, setOriginals] = useState([])
     const [trending, setTrending] = useState([])
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         const getOriginals = async () => {
             const response = await axios.get(`${endpoint}/discover/tv?api_key=${API_KEY}&with_networks=213`)
             console.log(response.data.results);
             setOriginals(response.data.results)
+            setLoading(false)
         }
         const getTrending = async () => {
             const response = await axios.get(`${endpoint}/trending/all/week?api_key=${API_KEY}&language=en-US`)
@@ -26,9 +30,10 @@ export default function Main() {
     }, [])
     return (
         <>
+            <Navbar />
             {
-
                 <div>
+                    {loading ? null : <Billboard originals={originals} imgEndpoint={imgEndpoint} />}
                     <Row title={'NETFLIX ORIGINAlS'} isOriginal={true} data={originals} imgEndpoint={imgEndpoint} />
                     <Row title={'TRENDING ON NETFLIX'} data={trending} imgEndpoint={imgEndpoint} />
                 </div>

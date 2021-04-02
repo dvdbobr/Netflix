@@ -1,0 +1,26 @@
+.navbar {
+    color: white;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    height: 60px;
+}
+
+.navbar-left {
+    display: flex;
+    margin-left: 10px;
+}
+
+.navbar-left div {
+    margin-right: 10px
+}
+
+.navbar-right {
+    margin-right: 2rem;
+    display: flex;
+}
+
+.navbar-right div {
+    margin-right: 10px
+}
