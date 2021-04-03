@@ -23,11 +23,11 @@ export default function Navbar(props) {
                 <div className="logo">
                     <img src={logo} alt="logo" />
                 </div>
-                {/* <div><a href="#">Home</a> </div>
-                <div><a href="#">TV Shows</a> </div>
-                <div><a href="#">Movies</a> </div>
-                <div><a href="#">New & Popular</a> </div>
-                <div><a href="#">My List</a> </div> */}
+                <div><a href="#home">Home</a> </div>
+                <div><a href="#home">TV Shows</a> </div>
+                <div><a href="#home">Movies</a> </div>
+                <div><a href="#home">New & Popular</a> </div>
+                <div><a href="#home">My List</a> </div>
             </div>
             <div className="navbar-right">
                 <div>

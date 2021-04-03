@@ -20,19 +20,22 @@ export default function Row(props) {
     }
     // const showTrailer = async (movie) => {
     //     console.log("work");
+
     //     let trailerurl = await axios.get(
     //         `https://api.themoviedb.org/3/tv/${movie.id}/videos?api_key=a3d71a761a7bb30717e08b95a73a97c4`
     //     );
     //     console.log(trailerurl.data.results);
     //     //setTrailerId('2TR0gaG01do')
+
+
     // }
     return (
         <div >
             <h2>{props.title}</h2>
-            <div className="moviePosterRow" >
+            <div className="moviePosterRow" style={{ position: 'relative' }}>
                 {
                     props.data.map(movie => {
-                        return <div key={movie.id} style={{ position: 'relative' }}>
+                        return <div key={movie.id}>
                             <img
                                 className={`moviePoster ${props.isOriginal ? 'bigMoviePoster' : ''}`}
                                 onClick={() => getTrailer(movie)}

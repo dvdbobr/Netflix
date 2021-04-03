@@ -36,7 +36,7 @@ export default function Main() {
             {
                 <div>
                     {loading ? null : <Billboard originals={originals} imgEndpoint={imgEndpoint} />}
-                    <Row title={'NETFLIX ORIGINAlS'} isOriginal={true} data={originals} imgEndpoint={imgEndpoint} />
+                    <Row title={'NETFLIX ORIGINALS'} isOriginal={true} data={originals} imgEndpoint={imgEndpoint} />
                     <Row title={'TRENDING ON NETFLIX'} data={trending} imgEndpoint={imgEndpoint} />
 
                     <div></div>
