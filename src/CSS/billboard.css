@@ -1,7 +1,19 @@
 .billboard {
+    position: relative;
     width: 99vw;
     height: 1000px;
+    z-index: 90;
 }
+/* .billboard::after{
+    position: absolute;
+    z-index: 0;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 99vw;
+    height: 1000px;
+    background:rgba(0, 0, 0, 0.212) ;
+} */
 
 .billboardDetails {
     color: white;

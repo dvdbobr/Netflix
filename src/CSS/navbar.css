@@ -1,10 +1,21 @@
-.navbar {
+.navbar,.navbarWithBackground {
+    background-image: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
     color: white;
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
     width: 100vw;
-    height: 60px;
+    height: 68px;
+    z-index: 100;
+}
+
+.navbarWithBackground {
+
+    background-color: rgb(20, 20, 20);
+    z-index: 100;
+    transition: all .5s ease-in-out;
 }
 
 .navbar-left {
@@ -17,10 +28,77 @@
 }
 
 .navbar-right {
-    margin-right: 2rem;
+    /* margin-right: 5rem; */
     display: flex;
 }
 
 .navbar-right div {
     margin-right: 10px
+}
+
+.logo {
+    width: 92px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.userSelect {
+    position: relative;
+}
+
+.userSelect:hover .userDropDown {
+    visibility: visible;
+    opacity: 100%;
+    transition: opacity 0.5s ease-in-out
+}
+
+.userDropDown {
+    opacity: 50%;
+    position: absolute;
+    right: -10px;
+    width: 200px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.746);
+    visibility: hidden;
+}
+
+.userDropDown ul {
+    list-style: none;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.userDropDown ul li {
+    list-style: none;
+    margin-top: 5px;
+}
+
+.user1 {
+    background: url('../Images/profileIcon1.jpg') no-repeat left top;
+    background-size: 40px;
+    height: 40px;
+    padding-left: 55px;
+    padding-top: 8px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 50%;
+    transition: opacity .5s;
+}
+@keyframes opacitySwitch {
+    0%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

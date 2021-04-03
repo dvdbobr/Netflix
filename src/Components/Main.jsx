@@ -7,6 +7,7 @@ import Row from './Row'
 
 export default function Main() {
     const API_KEY = 'a3d71a761a7bb30717e08b95a73a97c4'
+
     const endpoint = 'https://api.themoviedb.org/3'
     const imgEndpoint = 'http://image.tmdb.org/t/p/original'
     const [originals, setOriginals] = useState([])
@@ -25,6 +26,7 @@ export default function Main() {
             setTrending(response.data.results)
 
         }
+        
         getOriginals()
         getTrending()
     }, [])
@@ -36,7 +38,10 @@ export default function Main() {
                     {loading ? null : <Billboard originals={originals} imgEndpoint={imgEndpoint} />}
                     <Row title={'NETFLIX ORIGINAlS'} isOriginal={true} data={originals} imgEndpoint={imgEndpoint} />
                     <Row title={'TRENDING ON NETFLIX'} data={trending} imgEndpoint={imgEndpoint} />
+
+                    <div></div>
                 </div>
+                
             }
         </>
 
