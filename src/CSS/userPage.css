@@ -1,0 +1,52 @@
+.userMain {
+    display: flex;
+    flex-direction: column;
+}
+
+.users {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userRow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userMain h1 {
+    text-align: center;
+}
+
+.userName {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.userRow:hover .userName {
+    color: white;
+}
+
+.userRow img {
+    width: 192px;
+    height: 192px;
+    border: .3em solid transparent;
+    border-radius: 4px;
+}
+
+.userRow img:hover {
+    border: .3em solid white;
+}
+
+.manageProfile {
+    display: block;
+    margin: 2em auto 1em auto;
+    font-size: 1.2vw;
+    border: 1px solid grey;
+    color: grey;
+    letter-spacing: 2px;
+    cursor: pointer;
+    background-color: transparent;
+    width: 320px;
+    height: 52px;
+}

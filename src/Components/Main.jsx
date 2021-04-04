@@ -24,7 +24,6 @@ export default function Main() {
             const response = await axios.get(`${endpoint}/trending/all/week?api_key=${API_KEY}&language=en-US`)
             console.log(response.data.results);
             setTrending(response.data.results)
-
         }
         
         getOriginals()
@@ -36,8 +35,8 @@ export default function Main() {
             {
                 <div>
                     {loading ? null : <Billboard originals={originals} imgEndpoint={imgEndpoint} />}
-                    <Row title={'NETFLIX ORIGINALS'} isOriginal={true} data={originals} imgEndpoint={imgEndpoint} />
-                    <Row title={'TRENDING ON NETFLIX'} data={trending} imgEndpoint={imgEndpoint} />
+                    <Row title={'NETFLIX ORIGINALS'} isMovieOrTV={'tv'} isOriginal={true} data={originals} imgEndpoint={imgEndpoint} />
+                    <Row title={'TRENDING ON NETFLIX'} isMovieOrTV={'movie'} data={trending} imgEndpoint={imgEndpoint} />
 
                     <div></div>
                 </div>
