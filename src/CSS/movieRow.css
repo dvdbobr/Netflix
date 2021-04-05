@@ -94,3 +94,18 @@
 .score{
     color: #46d369;
 }
+.addToList{
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: white;
+    font-size:30px;
+    color: #fff;
+    border-color: #fff;
+    border-radius:50%;
+    background-color: #2a2a2a;
+    width: 42px;
+    height: 42px;
+}
+.detailsHeader{
+    font-size:16px;
+}
