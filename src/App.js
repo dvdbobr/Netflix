@@ -6,15 +6,32 @@ import './CSS/general.css'
 import './CSS/userPage.css'
 import './CSS/fonts.css'
 import './CSS/carousel.css'
+import { BrowserRouter, Route } from 'react-router-dom'
 import UserPage from "./Components/UserPage";
 import Carousel from "./Components/Carousel";
+import Movies from "./Components/Movies";
+import Search from "./Components/Search";
 function App() {
   return (
-    <div >
-      <Carousel/>
-      {/* <Main /> */}
-      {/* <UserPage/> */}
-    </div>
+    <BrowserRouter>
+      <div >
+        {/* <Carousel/> */}
+        <Route path="/" exact component={Main} />
+        <Route path="/Movies" exact component={Movies} />
+        <Route path="/search/:term" component={Search} />
+        {/* <Movies/> */}
+        {/* <UserPage/> */}
+
+      </div>
+    </BrowserRouter>
+    // <BrowserRouter>
+    //   <div>
+    //     <Header />
+    //     <Route path="/" exact component={Homepage} />
+    //     <Route path="/products" exact component={Products} />
+    //     <Route path="/products/:id" component={ProductDetail} />
+    //   </div>
+    // </BrowserRouter>
   );
 }
 

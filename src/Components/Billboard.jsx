@@ -11,6 +11,7 @@ export default function Billboard(props) {
             }}
         >
             <div className="billboardDetails">
+                <div className="shadow"></div>
                 <h1>{movieIndex.name}</h1>
                 <div className="billboardDescription">
                     <p>{movieIndex.overview}</p>

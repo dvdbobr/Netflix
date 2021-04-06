@@ -1,7 +1,7 @@
 .billboard {
     position: relative;
     width: 99vw;
-    height: 1000px;
+    height: 937px;
     z-index: 90;
 }
 /* .billboard::after{

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, makeStyles } from '@material-ui/core';
 export default function CarouselSlide(props) {
-    const { backgroundColor, title } = props.content;
+    const { backgroundColor, src } = props.content;
     const useStyles = makeStyles(() => ({
         card: {
             backgroundColor,
@@ -16,8 +16,8 @@ export default function CarouselSlide(props) {
     }));
     const classes = useStyles();
     return (
-        <Card className={classes.card}>
-            <h1>{title}</h1>
+        <Card className="moviePoster">
+            <img className={classes} src={src} alt=""/>
         </Card>
     )
 }

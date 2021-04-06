@@ -7,7 +7,9 @@ export default function Carousel() {
     // const [prevSlides, setPrevSlides] = useState(0)
     // const resetSlideState = () => { setNextSlides(1) }
     const SLIDE_INFO = [
-        { backgroundColor: '#ff7c7c', title: 'Slide 1' },
+        [{ src: 'https://images.pexels.com/photos/162256/wolf-predator-european-wolf-carnivores-162256.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' },
+        { src: 'https://images.pexels.com/photos/162256/wolf-predator-european-wolf-carnivores-162256.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' },
+        ],
         { backgroundColor: '#ffb6b9', title: 'Slide 2' },
         { backgroundColor: '#8deaff', title: 'Slide 3' },
         { backgroundColor: '#ffe084', title: 'Slide 4' },

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../Images/logo.png'
 import user1 from '../Images/profileIcon1.jpg'
 export default function Navbar(props) {
     const [navbarBackground, setNavbarBackground] = useState(false)
-
+    const [term, setTerm] = useState('')
     useEffect(() => {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 0) {
@@ -14,24 +15,30 @@ export default function Navbar(props) {
             }
         })
         return () => {
-            window.removeEventListener('scroll',null)
+            window.removeEventListener('scroll', null)
         }
     }, [])
+
     return (
         <div className={`navbar ${navbarBackground ? 'navbarWithBackground' : ''}`}>
             <div className="navbar-left">
                 <div className="logo">
-                    <img src={logo} alt="logo" />
+                    <Link to={"/"}><img src={logo} alt="logo" /></Link>
                 </div>
-                <div><a href="#home">Home</a> </div>
-                <div><a href="#home">TV Shows</a> </div>
-                <div><a href="#home">Movies</a> </div>
-                <div><a href="#home">New & Popular</a> </div>
-                <div><a href="#home">My List</a> </div>
+                <div><Link to={"/"}>Home</Link> </div>
+                <div><Link to={"/tv"}>TV Shows </Link></div>
+                <div><Link to={"/movies"}>Movies</Link> </div>
+                <div><Link to={"/new"}>New & Popular</Link> </div>
+                <div><Link to={"/mylist"}>My List</Link> </div>
             </div>
             <div className="navbar-right">
                 <div>
-                    <input type="text" name={props.search} value={props.search} />
+                    <input type="text"
+                        name={props.search}
+                        value={props.search}
+                        onChange={(e) => setTerm(e.target.value)}
+                    />
+                    <Link to={`/search/${term}`}>search</Link>
                 </div>
                 <div className="userSelect">
                     <img src={user1} width={40} height={40} alt="" />

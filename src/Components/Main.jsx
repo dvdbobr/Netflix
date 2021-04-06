@@ -12,6 +12,7 @@ export default function Main() {
     const imgEndpoint = 'http://image.tmdb.org/t/p/original'
     const [originals, setOriginals] = useState([])
     const [trending, setTrending] = useState([])
+    const [crime, setCrime] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         const getOriginals = async () => {
@@ -25,8 +26,13 @@ export default function Main() {
             console.log(response.data.results);
             setTrending(response.data.results)
         }
-        
+        const getCrime = async ()=>{
+            const response = await axios.get(`${endpoint}/discover/movie?api_key=${API_KEY}&with_genres=80`)
+            console.log(response.data.results);
+            setCrime(response.data.results)
+        }
         getOriginals()
+        getCrime()
         getTrending()
     }, [])
     return (
@@ -35,10 +41,10 @@ export default function Main() {
             {
                 <div>
                     {loading ? null : <Billboard originals={originals} imgEndpoint={imgEndpoint} />}
-                    <Row title={'NETFLIX ORIGINALS'} isMovieOrTV={'tv'} isOriginal={true} data={originals} imgEndpoint={imgEndpoint} />
-                    <Row title={'TRENDING ON NETFLIX'} isMovieOrTV={'movie'} data={trending} imgEndpoint={imgEndpoint} />
+                    <Row title={'NETFLIX ORIGINALS'} isMovieOrTV={'tv'} isOriginal={true} carousel={true} data={originals} imgEndpoint={imgEndpoint} />
+                    <Row title={'TRENDING ON NETFLIX'} isMovieOrTV={'movie'} data={trending} carousel={true} imgEndpoint={imgEndpoint} />
+                    <Row title={'CRIME'} isMovieOrTV={'movie'} carousel={true} data={crime} imgEndpoint={imgEndpoint}/>
 
-                    <div></div>
                 </div>
                 
             }
