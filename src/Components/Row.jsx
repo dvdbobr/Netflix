@@ -58,7 +58,6 @@ export default function Row(props) {
         const response = await axios.get(`${youtubeEndpoint}?part=snippet&&key=${YOUTUBE_API_KEY}&type=video&q=${movie.name ? movie.name : movie.original_title} trailer`)
         console.log(response.data.items);
         setTrailerId(response.data.items[0].id.videoId)
-        //console.log(trailer);
     }
     const showTrailer = async (movie, movieOrSeries) => {
         let trailerurl = await axios.get(
