@@ -11,13 +11,15 @@ import UserPage from "./Components/UserPage";
 import Carousel from "./Components/Carousel";
 import Movies from "./Components/Movies";
 import Search from "./Components/Search";
+import TVshows from "./Components/TVshows";
 function App() {
   return (
     <BrowserRouter>
       <div >
         {/* <Carousel/> */}
         <Route path="/" exact component={Main} />
-        <Route path="/Movies" exact component={Movies} />
+        <Route path="/movies" exact component={Movies} />
+        <Route path="/tv" exact component={TVshows} />
         <Route path="/search/:term" component={Search} />
         {/* <Movies/> */}
         {/* <UserPage/> */}

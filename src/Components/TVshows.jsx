@@ -2,29 +2,29 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
 import Row from './Row'
-export default function Movies() {
+export default function TVshows() {
     const API_KEY = 'a3d71a761a7bb30717e08b95a73a97c4'
 
     const endpoint = 'https://api.themoviedb.org/3'
     const imgEndpoint = 'http://image.tmdb.org/t/p/original'
+    const [popularTV, setPopularTV] = useState([])
     const [loading, setLoading] = useState(true)
-    const [popularMovies, setPopularMovies] = useState('')
     useEffect(() => {
-        const getPopularMovies = async () => {
-            const response = await axios.get(`${endpoint}/movie/popular?api_key=${API_KEY}&language=en-US&page=2`)
+        const getPopularTV = async () => {
+            const response = await axios.get(`${endpoint}/tv/popular?api_key=${API_KEY}&language=en-US&page=2`)
             console.log(response.data.results);
-            setPopularMovies(response.data.results)
+            setPopularTV(response.data.results)
             setLoading(false)
         }
-        getPopularMovies();
+        getPopularTV();
     }, [])
     return (
         <div>
-            <Navbar/>
+             <Navbar/>
             {!loading&&<div className="searchMovies">
-                <Row title={`POPULAR MOVIES`}
-                    isMovieOrTV={'movie'}
-                    data={popularMovies}
+                <Row title={`POPULAR TV SERIES`}
+                    isMovieOrTV={'tv'}
+                    data={popularTV}
                     imgEndpoint={imgEndpoint} />
             </div>}
         </div>

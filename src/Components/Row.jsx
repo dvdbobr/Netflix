@@ -165,6 +165,7 @@ export default function Row(props) {
                                 </div>
                                 <div className="detailsRight">
                                     <span className="grayCast">cast:</span>
+                                    {console.log(castDetails)}
                                     {castDetails && castDetails.map(p => {
                                         return <span className="castName"> {p.original_name},&nbsp;</span>
                                     })}<br/><br/>
