@@ -12,7 +12,6 @@ export default function TVshows() {
     useEffect(() => {
         const getPopularTV = async () => {
             const response = await axios.get(`${endpoint}/tv/popular?api_key=${API_KEY}&language=en-US&page=2`)
-            console.log(response.data.results);
             setPopularTV(response.data.results)
             setLoading(false)
         }

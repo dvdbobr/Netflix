@@ -9,16 +9,12 @@ export default function Billboard(props) {
     let youtubeId = ''
     const showTrailer = async (movie) => {
         let trailerurl = await axios.get(`${endpoint}/tv/${movie.id}/videos?api_key=a3d71a761a7bb30717e08b95a73a97c4`);
-        console.log(trailerurl.data.results);
         if (trailerurl.data.results.length > 0)
             youtubeId = trailerurl.data.results[0].key
-        console.log(youtubeId);
         setTrailerId(youtubeId)
     }
-    console.log(movieIndex);
     useEffect(() => {
         showTrailer(movieIndex)
-        console.log(movieIndex.id);
     }, [movieIndex])
     return (
         <div className="billboard"

@@ -12,7 +12,6 @@ export default function Movies() {
     useEffect(() => {
         const getPopularMovies = async () => {
             const response = await axios.get(`${endpoint}/movie/popular?api_key=${API_KEY}&language=en-US&page=2`)
-            console.log(response.data.results);
             setPopularMovies(response.data.results)
             setLoading(false)
         }

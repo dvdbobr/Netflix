@@ -5,10 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { GrCheckmark } from 'react-icons/gr'
-import { inisializeLocal, addMovieToLocal, inMyList } from '../localStorage.jsx'
+import { addMovieToLocal, inMyList } from '../localStorage.jsx'
 export default function Row(props) {
-    //const url = `https://www.youtube.com/embed/${videoId}`;
     const opts = {
         height: '400px',
         width: '100%',
@@ -46,37 +44,23 @@ export default function Row(props) {
         );
     }
 
-    //const [trailer, setTrailer] = useState('')
-    const YOUTUBE_API_KEY = 'AIzaSyA-UbRUXMBJCmt4pw3ZRSOPCZVTExRcvDw'
-    const youtubeEndpoint = 'https://www.googleapis.com/youtube/v3/search'
     const endpoint = 'https://api.themoviedb.org/3'
     const [trailerId, setTrailerId] = useState('')
     const [movieDetails, setMovieDetails] = useState('')
     const [castDetails, setCastDetails] = useState('')
     const [showDetails, setShowDetails] = useState(false)
     let youtubeId = ''
-    const getTrailer = async (movie) => {
-        const response = await axios.get(`${youtubeEndpoint}?part=snippet&&key=${YOUTUBE_API_KEY}&type=video&q=${movie.name ? movie.name : movie.original_title} trailer`)
-        console.log(response.data.items);
-        setTrailerId(response.data.items[0].id.videoId)
-    }
+    
     const showTrailer = async (movie, movieOrSeries) => {
         let trailerurl = await axios.get(`${endpoint}/${movieOrSeries}/${movie.id}/videos?api_key=a3d71a761a7bb30717e08b95a73a97c4`);
-        console.log(trailerurl.data.results);
         if (trailerurl.data.results.length > 0)
             youtubeId = trailerurl.data.results[0].key
-        console.log(youtubeId);
-        //setTrailerId('2TR0gaG01do')
         setTrailerId(youtubeId)
     }
     const getDetailsById = async (id, movieOrSeries) => {
         let details = await axios.get(`${endpoint}/${movieOrSeries}/${id}?api_key=a3d71a761a7bb30717e08b95a73a97c4`);
         let cast = await axios.get(`${endpoint}/${movieOrSeries}/${id}/credits?api_key=a3d71a761a7bb30717e08b95a73a97c4`)
-        console.log(details.data);
-        //console.log(details.data.release_date.slice(0,4));
         setMovieDetails(details.data);
-        console.log(movieDetails);
-        console.log(cast.data.cast);
         setCastDetails(cast.data.cast.slice(0, 4));
     }
     const showTrailerAndGetDetails = async (movie, movieOrSeries) => {
@@ -89,10 +73,8 @@ export default function Row(props) {
         youtubeId = ''
     }
     const checkIfExsistsInStorage = () => {
-        console.log("works");
-        if (!inMyList('user1', movieDetails.id)) {
+        if (!inMyList('user1', movieDetails.id)) 
             addMovieToLocal('user1', props.isMovieOrTV, movieDetails)
-        }
     }
 
     return (
@@ -116,7 +98,6 @@ export default function Row(props) {
                                         />
                                     </div>
                                 }) ://not mylist row
-                                    // console.log(props.data)
                                     props.data.map(movie => {
                                         return <div key={movie.details.id}>
                                             <img
@@ -147,7 +128,6 @@ export default function Row(props) {
                                         />
                                     </div> : null
                                 }) ://not mylist row
-                                    // console.log(props.data)
                                     props.data.map(movie => {
                                         return <div key={movie.details.id}>
                                             <img
@@ -198,7 +178,6 @@ export default function Row(props) {
                                 </div>
                                 <div className="detailsRight">
                                     <span className="grayCast">cast:</span>
-                                    {console.log(castDetails)}
                                     {castDetails && castDetails.map(p => {
                                         return <span className="castName"> {p.original_name},&nbsp;</span>
                                     })}<br /><br />
