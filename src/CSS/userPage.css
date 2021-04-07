@@ -1,6 +1,9 @@
 .userMain {
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    width: 100vw;
+
 }
 
 .users {
@@ -16,11 +19,15 @@
 }
 
 .userMain h1 {
+    font-size: 3.5vw;
     text-align: center;
+    margin-top: 13rem;
+    font-weight: 400;
 }
 
 .userName {
     color: rgba(255, 255, 255, 0.5);
+    font-size: 18px;
 }
 
 .userRow:hover .userName {
@@ -49,4 +56,8 @@
     background-color: transparent;
     width: 320px;
     height: 52px;
+}
+.manageProfile:hover{
+    border-color:white;
+    color: white;
 }

@@ -5,7 +5,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import CarouselSlide from './CarouselSlide';
 export default function Row(props) {
     //const url = `https://www.youtube.com/embed/${videoId}`;
     const opts = {
@@ -52,6 +51,7 @@ export default function Row(props) {
     const [movieDetails, setMovieDetails] = useState('')
     const [castDetails, setCastDetails] = useState('')
     const [showDetails, setShowDetails] = useState(false)
+    const [loading, setLoading] = useState(true)
     let youtubeId = ''
     const getTrailer = async (movie) => {
 
@@ -76,13 +76,15 @@ export default function Row(props) {
         console.log(details.data);
         //console.log(details.data.release_date.slice(0,4));
         setMovieDetails(details.data);
+        console.log(movieDetails);
         console.log(cast.data.cast);
-        setCastDetails(cast.data.cast.slice(0,4));
+        setCastDetails(cast.data.cast.slice(0, 4));
     }
     const showTrailerAndGetDetails = async (movie, movieOrSeries) => {
         showTrailer(movie, movieOrSeries);
         getDetailsById(movie.id, movieOrSeries);
         handleShowDetails();
+        setLoading(false);
     }
     const handleShowDetails = () => {
         setShowDetails(!showDetails);
@@ -132,14 +134,14 @@ export default function Row(props) {
                 }
 
                 {
-                    (showDetails && trailerId) ? <div className={`${trailerId ? 'openDetailsBackground' : ''}`}>
+                    (showDetails && trailerId && loading === false) ? <div className={`${trailerId ? 'openDetailsBackground' : ''}`}>
                         <div className='openDetails' >
                             <div className="closeDetails" onClick={handleShowDetails}>×</div>
                             {/* <div className="shadow"></div> */}
                             <div className="trailer">
                                 {
 
-                                    (showDetails && trailerId) ? <YouTube videoId={trailerId} opts={opts} /> : null
+                                    (showDetails && trailerId && loading === false) ? <YouTube videoId={trailerId} opts={opts} /> : null
 
                                     // (showDetails && trailerId) ? <iframe src={`http://www.youtube.com/embed/${trailerId}`}
                                     //     width="100%" height="470" frameborder="0" allowfullscreen></iframe> :
@@ -167,9 +169,9 @@ export default function Row(props) {
                                     {console.log(castDetails)}
                                     {castDetails && castDetails.map(p => {
                                         return <span className="castName"> {p.original_name},&nbsp;</span>
-                                    })}<br/><br/>
+                                    })}<br /><br />
                                     <span className="grayCast">genres:</span>
-                                    {movieDetails && movieDetails.genres.map(g=>{
+                                    {movieDetails && movieDetails.genres.map(g => {
                                         return <span className="castName">{g.name},&nbsp;</span>
                                     })}
                                 </div>
