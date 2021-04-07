@@ -5,7 +5,7 @@ import Row from './Row'
 
 export default function Search(props) {
     const endpoint = 'https://api.themoviedb.org/3'
-    const imgEndpoint = 'http://image.tmdb.org/t/p/original'
+    const imgEndpoint = 'https://image.tmdb.org/t/p/original'
     const [searchMovies, setMovies] = useState([])
     const [searchSeries, setSearchSeries] = useState([])
     useEffect(() => {

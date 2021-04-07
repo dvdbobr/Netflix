@@ -6,7 +6,7 @@ export default function Movies() {
     const API_KEY = 'a3d71a761a7bb30717e08b95a73a97c4'
 
     const endpoint = 'https://api.themoviedb.org/3'
-    const imgEndpoint = 'http://image.tmdb.org/t/p/original'
+    const imgEndpoint = 'https://image.tmdb.org/t/p/original'
     const [loading, setLoading] = useState(true)
     const [popularMovies, setPopularMovies] = useState('')
     useEffect(() => {

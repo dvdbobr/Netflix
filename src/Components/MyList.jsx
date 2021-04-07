@@ -4,7 +4,7 @@ import Row from './Row'
 import { getUserData } from '../localStorage'
 export default function MyList() {
     const [userData, setUserData] = useState([])
-    const imgEndpoint = 'http://image.tmdb.org/t/p/original'
+    const imgEndpoint = 'https://image.tmdb.org/t/p/original'
     useEffect(() => {
         setUserData(getUserData('user1'))
     },[])

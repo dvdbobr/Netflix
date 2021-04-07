@@ -7,7 +7,7 @@ import Row from './Row'
 export default function Main() {
     const API_KEY = 'a3d71a761a7bb30717e08b95a73a97c4'
     const endpoint = 'https://api.themoviedb.org/3'
-    const imgEndpoint = 'http://image.tmdb.org/t/p/original'
+    const imgEndpoint = 'https://image.tmdb.org/t/p/original'
     const [originals, setOriginals] = useState([])
     const [trending, setTrending] = useState([])
     const [crime, setCrime] = useState([])
