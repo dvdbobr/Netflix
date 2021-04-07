@@ -14,10 +14,14 @@
 
 .userRow {
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
-
+.userItem{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
 .userMain h1 {
     font-size: 3.5vw;
     text-align: center;
@@ -30,7 +34,7 @@
     font-size: 18px;
 }
 
-.userRow:hover .userName {
+.userItem:hover .userName {
     color: white;
 }
 

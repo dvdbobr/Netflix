@@ -84,7 +84,13 @@
     padding-left: 55px;
     padding-top: 8px;
 }
-
+.user2 {
+    background: url('../Images/profileIcon2.png') no-repeat left top;
+    background-size: 40px;
+    height: 40px;
+    padding-left: 55px;
+    padding-top: 8px;
+}
 a {
     color: white;
     text-decoration: none;
@@ -94,7 +100,14 @@ a {
     transition: opacity .5s;
 }
 
-
+.searchInput{
+    background: black;
+    color: white;
+    height: 36px;
+    margin-right: 8px;
+    padding: 6px;
+    font-size: 20px;
+}
 @keyframes opacitySwitch {
     0% {
         opacity: 0;

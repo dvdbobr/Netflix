@@ -20,8 +20,10 @@ export default function TVshows() {
     }, [])
     return (
         <div>
+            
              <Navbar/>
-            {!loading&&<div className="searchMovies">
+            {loading?<div className="nfLoader"></div>
+            :<div className="searchMovies">
                 <Row title={`POPULAR TV SERIES`}
                     isMovieOrTV={'tv'}
                     data={popularTV}

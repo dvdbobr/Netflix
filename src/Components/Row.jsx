@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { GrCheckmark } from 'react-icons/gr'
+import { inisializeLocal, addMovieToLocal, inMyList } from '../localStorage.jsx'
 export default function Row(props) {
     //const url = `https://www.youtube.com/embed/${videoId}`;
     const opts = {
@@ -13,7 +15,7 @@ export default function Row(props) {
     }
     const settings = {
         dots: true,
-        infinite: true,
+        infinite: props.data.length > 6,
         speed: 1000,
         slidesToShow: 6,
         slidesToScroll: 6,
@@ -43,6 +45,7 @@ export default function Row(props) {
             </div>
         );
     }
+
     //const [trailer, setTrailer] = useState('')
     const YOUTUBE_API_KEY = 'AIzaSyA-UbRUXMBJCmt4pw3ZRSOPCZVTExRcvDw'
     const youtubeEndpoint = 'https://www.googleapis.com/youtube/v3/search'
@@ -51,18 +54,14 @@ export default function Row(props) {
     const [movieDetails, setMovieDetails] = useState('')
     const [castDetails, setCastDetails] = useState('')
     const [showDetails, setShowDetails] = useState(false)
-    const [loading, setLoading] = useState(true)
     let youtubeId = ''
     const getTrailer = async (movie) => {
-
         const response = await axios.get(`${youtubeEndpoint}?part=snippet&&key=${YOUTUBE_API_KEY}&type=video&q=${movie.name ? movie.name : movie.original_title} trailer`)
         console.log(response.data.items);
         setTrailerId(response.data.items[0].id.videoId)
     }
     const showTrailer = async (movie, movieOrSeries) => {
-        let trailerurl = await axios.get(
-            `${endpoint}/${movieOrSeries}/${movie.id}/videos?api_key=a3d71a761a7bb30717e08b95a73a97c4`
-        );
+        let trailerurl = await axios.get(`${endpoint}/${movieOrSeries}/${movie.id}/videos?api_key=a3d71a761a7bb30717e08b95a73a97c4`);
         console.log(trailerurl.data.results);
         if (trailerurl.data.results.length > 0)
             youtubeId = trailerurl.data.results[0].key
@@ -84,38 +83,58 @@ export default function Row(props) {
         showTrailer(movie, movieOrSeries);
         getDetailsById(movie.id, movieOrSeries);
         handleShowDetails();
-        setLoading(false);
     }
     const handleShowDetails = () => {
         setShowDetails(!showDetails);
         youtubeId = ''
     }
+    const checkIfExsistsInStorage = () => {
+        console.log("works");
+        if (!inMyList('user1', movieDetails.id)) {
+            addMovieToLocal('user1', props.isMovieOrTV, movieDetails)
+        }
+    }
+
     return (
         <div className="searchMovies">
             <h2>{props.title}</h2>
             <div className="moviePosterRow" >
-                {
-                    props.carousel ? <Slider {...settings}>
-                        {
-                            props.data.map(movie => {
-                                return <div key={movie.id}>
-                                    <img
-                                        className={`moviePoster ${props.isOriginal ? 'bigMoviePoster' : ''}`}
-                                        onClick={() => showTrailerAndGetDetails(movie, props.isMovieOrTV)}
-                                        src={
-                                            props.isOriginal ? props.imgEndpoint + movie.poster_path :
-                                                props.imgEndpoint + movie.backdrop_path
-                                        }
-                                        alt="poster"
-                                    />
-
-                                </div>
-                            })
-                        }
-                    </Slider> : (
+                {//carousel = do i want a carousel
+                    props.carousel ? <div>
+                        {props.data.length>0&&<Slider {...settings}>
+                            {//mylist = is it mylist row
+                                !props.mylist ? props.data.map(movie => {
+                                    return <div key={movie.id}>
+                                        <img
+                                            className={`moviePoster ${props.isOriginal ? 'bigMoviePoster' : ''}`}
+                                            onClick={() => showTrailerAndGetDetails(movie, props.isMovieOrTV)}//is movie or tv for the api request
+                                            src={
+                                                props.isOriginal ? props.imgEndpoint + movie.poster_path ://is netflix original than big poster
+                                                    props.imgEndpoint + movie.backdrop_path
+                                            }
+                                            alt="poster"
+                                        />
+                                    </div>
+                                }) ://not mylist row
+                                    // console.log(props.data)
+                                    props.data.map(movie => {
+                                        return <div key={movie.details.id}>
+                                            <img
+                                                className={`moviePoster`}
+                                                onClick={() => showTrailerAndGetDetails(movie.details, movie.type)}
+                                                src={
+                                                    props.imgEndpoint + movie.details.backdrop_path
+                                                }
+                                                alt="poster"
+                                            />
+                                        </div>
+                                    })
+                            }
+                        </Slider>}
+                    </div> : (//no carousel for movies and tv series page and for search page 
                         <div className="moviesGrid">
                             {
-                                props.data.map(movie => {
+                                !props.mylist ? props.data.map(movie => {
                                     return movie.backdrop_path ? <div key={movie.id}>
                                         <img
                                             className={`moviePoster`}
@@ -127,21 +146,34 @@ export default function Row(props) {
                                             alt="poster"
                                         />
                                     </div> : null
-                                })
+                                }) ://not mylist row
+                                    // console.log(props.data)
+                                    props.data.map(movie => {
+                                        return <div key={movie.details.id}>
+                                            <img
+                                                className={`moviePoster`}
+                                                onClick={() => showTrailerAndGetDetails(movie.details, movie.type)}
+                                                src={
+                                                    props.imgEndpoint + movie.details.backdrop_path
+                                                }
+                                                alt="poster"
+                                            />
+                                        </div>
+                                    })
                             }
                         </div>
                     )
                 }
 
-                {
-                    (showDetails && trailerId && loading === false) ? <div className={`${trailerId ? 'openDetailsBackground' : ''}`}>
+                {//show details = clicked on movie/tv series trailerId exsists only after a movie or series was clicked
+                    (showDetails && trailerId) ? <div className={`${trailerId ? 'openDetailsBackground' : ''}`}>
                         <div className='openDetails' >
                             <div className="closeDetails" onClick={handleShowDetails}>×</div>
                             {/* <div className="shadow"></div> */}
                             <div className="trailer">
                                 {
 
-                                    (showDetails && trailerId && loading === false) ? <YouTube videoId={trailerId} opts={opts} /> : null
+                                    (showDetails && trailerId) ? <YouTube videoId={trailerId} opts={opts} /> : null
 
                                     // (showDetails && trailerId) ? <iframe src={`http://www.youtube.com/embed/${trailerId}`}
                                     //     width="100%" height="470" frameborder="0" allowfullscreen></iframe> :
@@ -161,7 +193,7 @@ export default function Row(props) {
                                     <span className="movieDetailsOverview">
                                         {movieDetails.overview}
                                     </span><br />
-                                    <button class="addToList">+</button>
+                                    <button onClick={() => checkIfExsistsInStorage()} class="addToList">+</button>
 
                                 </div>
                                 <div className="detailsRight">

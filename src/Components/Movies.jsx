@@ -21,7 +21,8 @@ export default function Movies() {
     return (
         <div>
             <Navbar/>
-            {!loading&&<div className="searchMovies">
+            {loading?<div className="nfLoader"></div>
+            :<div className="searchMovies">
                 <Row title={`POPULAR MOVIES`}
                     isMovieOrTV={'movie'}
                     data={popularMovies}
