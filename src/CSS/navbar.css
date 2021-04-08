@@ -50,14 +50,9 @@
     position: relative;
 }
 
-.userSelect:hover .userDropDown {
-    visibility: visible;
-    opacity: 100%;
-    transition: opacity 0.5s ease-in-out
-}
+
 
 .userDropDown {
-    opacity: 70%;
     position: absolute;
     right: -10px;
     width: 200px;
@@ -76,7 +71,9 @@
     list-style: none;
     margin-top: 5px;
 }
-
+.userSelect:hover .userDropDown {
+    visibility: visible;
+}
 .user1 {
     background: url('../Images/profileIcon1.jpg') no-repeat left top;
     background-size: 40px;
