@@ -1,5 +1,5 @@
 # Netflix With React
-this website will be a netflix clone in react
+this website is a netflix clone in react
 
 
 
