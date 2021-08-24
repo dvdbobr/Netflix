@@ -40,7 +40,7 @@ export default function Navbar(props) {
                     onChange={(e) => setTerm(e.target.value)}
                 />
                 <div>
-                    {term&&<Link to={`/search/${term}`}><FaSearch size={20} /></Link>}
+                    {term && <Link to={`/search/${term}`}><FaSearch size={20} /></Link>}
                 </div>
                 <div className="userSelect">
                     <img src={user1} width={40} height={40} alt="" />
